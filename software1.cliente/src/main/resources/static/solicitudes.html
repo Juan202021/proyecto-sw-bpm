@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes - Plataforma de Clientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="toast" class="toast hidden"></div>
+        <header class="glass-header">
+            <h1>Panel de Cliente</h1>
+            <div class="user-info">
+                <span id="user-name-display"></span>
+                <button class="btn-secondary" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <nav class="sidebar glass-panel">
+                <ul>
+                    <li><a class="nav-btn" href="propiedades.html">Mis Propiedades</a></li>
+                    <li><a class="nav-btn" href="contratos.html">Mis Contratos & Pagos</a></li>
+                    <li><a class="nav-btn" href="notificaciones.html">Notificaciones</a></li>
+                    <li><a class="nav-btn active" href="solicitudes.html">Mis Solicitudes</a></li>
+                    <li><a class="nav-btn" href="procesos.html">Mis Procesos</a></li>
+                </ul>
+            </nav>
+
+            <main class="content-area glass-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2>Mis Solicitudes</h2>
+                    <button class="btn-primary" onclick="showNewRequestForm()" style="width: auto;">Crear Solicitud</button>
+                </div>
+                
+                <div id="new-request-form-container" class="glass-panel hidden" style="margin-bottom: 2rem; padding: 1rem;">
+                    <h3>Nueva Solicitud</h3>
+                    <form id="add-request-form">
+                        <div class="input-group">
+                            <label for="req-type">Tipo de Solicitud</label>
+                            <select id="req-type" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(15, 23, 42, 0.6); color: white;">
+                                <option value="revisión de factura">Revisión de factura</option>
+                                <option value="reporte de pago">Reporte de pago</option>
+                                <option value="solicitud de reconexión">Solicitud de reconexión</option>
+                                <option value="reporte de error en medidor">Reporte de error en medidor</option>
+                                <option value="actualización de datos">Actualización de datos</option>
+                                <option value="solicitud de soporte">Solicitud de soporte</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="req-contract">Contrato Asociado (Opcional)</label>
+                            <input type="number" id="req-contract" placeholder="ID del Contrato">
+                        </div>
+                        <div class="input-group">
+                            <label for="req-desc">Descripción</label>
+                            <textarea id="req-desc" required rows="4" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(15, 23, 42, 0.6); color: white;"></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="submit" class="btn-primary">Enviar Solicitud</button>
+                            <button type="button" class="btn-secondary" onclick="hideNewRequestForm()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="requests-list" class="list-container">
+                    <!-- JS fills this -->
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        checkAuth();
+        updateUserName();
+        loadRequests();
+    </script>
+</body>
+</html>

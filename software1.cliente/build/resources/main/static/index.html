@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Clientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="glass-header">
+            <h2>Empresa de Gas</h2>
+            <div>
+                <a href="auth.html" class="btn-primary" style="padding: 10px 20px; text-decoration: none;">Ingresar al Portal</a>
+            </div>
+        </header>
+
+        <main class="hero glass-panel">
+            <h1>Bienvenido a la Plataforma de Clientes</h1>
+            <p>Gestiona tus propiedades, consulta el estado de tu servicio de gas, revisa facturas, realiza pagos y crea solicitudes todo desde un mismo lugar.</p>
+            <div class="hero-buttons">
+                <a href="auth.html?tab=register" class="btn-action" style="text-decoration: none; font-size: 1.1rem; padding: 12px 24px;">Registrarse Ahora</a>
+                <a href="auth.html?tab=login" class="btn-secondary" style="text-decoration: none; font-size: 1.1rem; padding: 12px 24px; display: flex; align-items: center;">Ya tengo cuenta</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

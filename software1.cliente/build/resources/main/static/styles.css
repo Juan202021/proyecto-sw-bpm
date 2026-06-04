@@ -1,0 +1,313 @@
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #f59e0b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top left, #1e1b4b, var(--bg-color));
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+#app {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Glassmorphism */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+}
+
+.glass-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Utils */
+.hidden { display: none !important; }
+.active { display: block; }
+
+/* Auth Section */
+#auth-section {
+    max-width: 450px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: rgba(15, 23, 42, 0.6);
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary, .btn-action {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    width: auto;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-action {
+    background: var(--success);
+    color: white;
+    padding: 8px 12px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.btn-action:hover {
+    background: #059669;
+}
+
+/* Dashboard */
+.dashboard-container {
+    display: flex;
+    gap: 20px;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.nav-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    padding: 12px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+    margin-bottom: 5px;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.content-area {
+    flex: 1;
+    min-height: 60vh;
+}
+
+/* Lists */
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #f8fafc;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.list-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge.PENDIENTE { background: var(--warning); color: #fff; }
+.badge.EN_PROCESO { background: var(--primary); color: #fff; }
+.badge.COMPLETADO { background: var(--success); color: #fff; }
+
+/* Toast */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    transition: 0.3s;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    animation: fadeIn 0.3s ease;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #cbd5e1;
+}
+
+.close-modal:hover {
+    color: white;
+}
