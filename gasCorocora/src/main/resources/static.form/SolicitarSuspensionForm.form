@@ -1,0 +1,79 @@
+{
+  "components": [
+    {
+      "subtype": "datetime",
+      "dateLabel": "Feha",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_1an4ncy",
+        "columns": null
+      },
+      "id": "Field_1nklu58",
+      "key": "fechaSuspension",
+      "timeLabel": "Hora",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 1,
+      "validate": {
+        "required": true
+      },
+      "disallowPassedDates": true
+    },
+    {
+      "label": "Código de Orden de Trabajo",
+      "type": "number",
+      "layout": {
+        "row": "Row_16px2yx",
+        "columns": null
+      },
+      "id": "Field_0rpv80i",
+      "key": "codigoOrdenTrabajo",
+      "disabled": true
+    },
+    {
+      "label": "Domicilio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_16px2yx",
+        "columns": null
+      },
+      "id": "Field_1j5js8c",
+      "key": "domiilio",
+      "disabled": true
+    },
+    {
+      "label": "Motivo de Suspensión",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1bqhuow",
+        "columns": null
+      },
+      "id": "Field_1cf9dq1",
+      "key": "motivoSuspension",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Nombre del Técnico",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_11mpgad",
+        "columns": null
+      },
+      "id": "Field_1u7doi6",
+      "key": "nombreTecnicoSuspende",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "SolicitarSuspensionForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

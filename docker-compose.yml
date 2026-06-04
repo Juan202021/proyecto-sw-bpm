@@ -1,0 +1,126 @@
+services:
+  bpm_engine_db:
+    image: postgres:16.2
+    container_name: bpm_engine_db
+    user: postgres
+    environment:
+      POSTGRES_DB: bpm_engine
+#      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5452:5432"
+    volumes:
+      - bpm_engine_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - my_network
+
+  gas_corocora_request_db:
+    image: postgres:16.2
+    container_name: gas_corocora_request_db
+    user: postgres
+    environment:
+      POSTGRES_DB: gas_corocora_request
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5433:5432"
+    volumes:
+      - gas_corocora_request_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - my_network
+
+  bpmengine:
+    build:
+      context: ./gasCorocora
+      dockerfile: Dockerfile
+    container_name: bpmengine
+    ports:
+      - "9000:9000"
+    # volumes:
+    #  - ./BPM-Engine:/app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://bpm_engine_db:5432/bpm_engine
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      CAMUNDA_BPM_DATABASE_TYPE: postgres
+      CAMUNDA_BPM_DATABASE_SCHEMA_UPDATE: true
+      CAMUNDA_BPM_ADMIN_USER_ID: demo
+      CAMUNDA_BPM_ADMIN_USER_PASSWORD: demo
+      LOGGING_LEVEL_ORG_CAMUNDA_BPM_ENGINE_IMPL_PERSISTENCE_ENTITY: DEBUG
+      LOGGING_LEVEL_ORG_CAMUNDA_BPM_ENGINE_IMPL_HISTORY_EVENT: TRACE
+      SERVER_PORT: 9000
+      EMAIL_ADDRESS: securedigitaldocs@gmail.com
+      EMAIL_PASSWORD: bsqdckybksteviio
+
+    depends_on:
+      bpm_engine_db:
+          condition: service_healthy
+      gas_corocora_request_db:
+          condition: service_healthy
+    networks:
+      - my_network
+
+  software1cliente:
+    build:
+      context: ./software1.cliente
+      dockerfile: Dockerfile
+    container_name: software1cliente
+    ports:
+      - "9001:9001"
+    # volumes:
+    #  - ./software1cliente:/app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://gas_corocora_request_db:5432/gas_corocora_request
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      CAMUNDA_URL: http://bpmengine:9000/engine-rest/
+      SERVER_PORT: 9001
+      SPRING_SERVLET_MULTIPART_ENABLED: true
+      SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: 10MB
+      SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: 10MB
+    depends_on:
+      gas_corocora_request_db:
+        condition: service_healthy
+    networks:
+      - my_network
+
+  centralsys:
+    build:
+      context: ./centralSys
+      dockerfile: Dockerfile
+    container_name: centralsys
+    ports:
+      - "9003:9003"
+    # volumes:
+    #   - ./CentralSys:/app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://gas_corocora_request_db:5432/gas_corocora_request
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      CAMUNDA_URL: http://bpmengine:9000/engine-rest/
+      SERVER_PORT: 9003
+      SERVER_ERROR_WHITELABEL_ENABLED: false
+    depends_on:
+      gas_corocora_request_db:
+        condition: service_healthy
+    networks:
+      - my_network
+
+volumes:
+  bpm_engine_data:
+  gas_corocora_request_data:
+
+networks:
+  my_network:

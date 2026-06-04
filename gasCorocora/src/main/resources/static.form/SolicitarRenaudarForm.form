@@ -1,0 +1,79 @@
+{
+  "components": [
+    {
+      "subtype": "datetime",
+      "dateLabel": "Date",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0cqosyt",
+        "columns": null
+      },
+      "id": "Field_04tsyrs",
+      "key": "fechaRenauda",
+      "timeLabel": "Time",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 1,
+      "validate": {
+        "required": true
+      },
+      "disallowPassedDates": true
+    },
+    {
+      "label": "Código de Orden de Trabajo",
+      "type": "number",
+      "layout": {
+        "row": "Row_0szys60",
+        "columns": null
+      },
+      "id": "Field_0a6s2tu",
+      "key": "codigoOrdenTrabajo",
+      "disabled": true
+    },
+    {
+      "label": "Domicilio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0szys60",
+        "columns": null
+      },
+      "id": "Field_0yvoob8",
+      "key": "domicilio",
+      "disabled": true
+    },
+    {
+      "label": "Motivo de Reanudación",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1m5bxv6",
+        "columns": null
+      },
+      "id": "Field_1fnw0jp",
+      "key": "motivoReanudacion",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Nombre del Técnico",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1w1ct3g",
+        "columns": null
+      },
+      "id": "Field_0yfeas6",
+      "key": "nombreTecnicoReanuda",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "SolicitarRenaudarForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

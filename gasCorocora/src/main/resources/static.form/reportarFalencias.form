@@ -1,0 +1,53 @@
+{
+  "components": [
+    {
+      "label": "Tipo de Falencia",
+      "values": [
+        {
+          "label": "Fuga",
+          "value": "fuga"
+        },
+        {
+          "label": "Material defectuoso",
+          "value": "material"
+        },
+        {
+          "label": "Conexion incorrecta",
+          "value": "cone"
+        },
+        {
+          "label": "Otro",
+          "value": "otro"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_1cehlqu",
+        "columns": null
+      },
+      "id": "Field_0uwv49r",
+      "key": "tipoFalencia",
+      "description": "Seleccione una opcion"
+    },
+    {
+      "label": "Falencia",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0xk4qfh",
+        "columns": null
+      },
+      "id": "Field_15kdm9q",
+      "key": "descripcionFalencia",
+      "description": "Describa la falencia"
+    }
+  ],
+  "type": "default",
+  "id": "reportarFalencias",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

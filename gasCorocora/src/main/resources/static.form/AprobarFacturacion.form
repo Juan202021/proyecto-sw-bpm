@@ -1,0 +1,44 @@
+{
+  "components": [
+    {
+      "text": "Factura Sospechosa",
+      "type": "text",
+      "layout": {
+        "row": "Row_0l4eg3g",
+        "columns": null
+      },
+      "id": "Field_12g6ueh"
+    },
+    {
+      "label": "¿Aprueba facturación manual?",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0l4eg3g",
+        "columns": null
+      },
+      "id": "Field_1cjta8v",
+      "key": "aprobarFactura",
+      "defaultValue": true
+    },
+    {
+      "label": "Comentarios del supervisor",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0z5j4or",
+        "columns": null
+      },
+      "id": "Field_0tois3y",
+      "key": "comentario",
+      "defaultValue": "Realizar evaluacion"
+    }
+  ],
+  "type": "default",
+  "id": "aprobarFacturacion",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

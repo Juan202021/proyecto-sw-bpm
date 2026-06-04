@@ -1,0 +1,202 @@
+{
+  "components": [
+    {
+      "text": "FACTURA ENVIADA AL CORREO",
+      "type": "text",
+      "layout": {
+        "row": "Row_1qtcupq",
+        "columns": null
+      },
+      "id": "Field_0q6j8he"
+    },
+    {
+      "label": "ID del cliente",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0gvfo99",
+        "columns": null
+      },
+      "id": "Field_086pl6f",
+      "key": "clienteId",
+      "validate": {
+        "required": false
+      },
+      "disabled": true
+    },
+    {
+      "label": "Tipo de cliente",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1rbwlo6",
+        "columns": null
+      },
+      "id": "Field_1dvxl6b",
+      "key": "categoriaCliente",
+      "disabled": true
+    },
+    {
+      "label": "Consumo leído",
+      "type": "number",
+      "layout": {
+        "row": "Row_1ef6qvj",
+        "columns": null
+      },
+      "id": "Field_0s9edz7",
+      "key": "consumo",
+      "validate": {
+        "required": false
+      },
+      "disabled": true
+    },
+    {
+      "label": "Resultado de lectura",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1ef6qvj",
+        "columns": null
+      },
+      "id": "Field_0fryv3a",
+      "key": "resultado",
+      "disabled": true
+    },
+    {
+      "label": "Tarifa cobrada",
+      "type": "number",
+      "layout": {
+        "row": "Row_03pnpy0",
+        "columns": null
+      },
+      "id": "Field_1578aqs",
+      "key": "tarifa",
+      "disabled": true
+    },
+    {
+      "label": "Descuento subsidio %",
+      "type": "number",
+      "layout": {
+        "row": "Row_03pnpy0",
+        "columns": null
+      },
+      "id": "Field_1joexz8",
+      "key": "subsidio",
+      "disabled": true
+    },
+    {
+      "label": "Factura total",
+      "type": "number",
+      "layout": {
+        "row": "Row_0wz1k26",
+        "columns": null
+      },
+      "id": "Field_0kvnv9w",
+      "key": "totalFactura",
+      "disabled": true
+    },
+    {
+      "label": "Factura total aplicando descuentos",
+      "type": "number",
+      "layout": {
+        "row": "Row_1j7mqcb",
+        "columns": null
+      },
+      "id": "Field_1ip4xrs",
+      "key": "totalDescuento",
+      "conditional": {
+        "hide": "=consumo >= 200"
+      },
+      "disabled": true
+    },
+    {
+      "text": "DETALLES DE FACTURACION MANUAL",
+      "type": "text",
+      "layout": {
+        "row": "Row_0nzmnza",
+        "columns": null
+      },
+      "id": "Field_16w0qua",
+      "conditional": {
+        "hide": "=tipoLectura != \"MANUAL\""
+      }
+    },
+    {
+      "label": "Numero de medidor",
+      "type": "number",
+      "layout": {
+        "row": "Row_0ji38wd",
+        "columns": null
+      },
+      "id": "Field_1b2m87n",
+      "key": "medidor",
+      "disabled": true,
+      "conditional": {
+        "hide": "=tipoLectura != \"MANUAL\""
+      }
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Fecha de revision",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0ji38wd",
+        "columns": null
+      },
+      "id": "Field_0bmvztd",
+      "key": "fecha",
+      "disabled": true,
+      "conditional": {
+        "hide": "=tipoLectura != \"MANUAL\""
+      }
+    },
+    {
+      "label": "Operador",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0fjabmr",
+        "columns": null
+      },
+      "id": "Field_0w0admp",
+      "key": "operador",
+      "disabled": true,
+      "conditional": {
+        "hide": "=tipoLectura != \"MANUAL\""
+      }
+    },
+    {
+      "label": "Observaciones del operador",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0zk4jav",
+        "columns": null
+      },
+      "id": "Field_0fm2qoj",
+      "key": "observaciones",
+      "disabled": true,
+      "conditional": {
+        "hide": "=tipoLectura != \"MANUAL\""
+      }
+    },
+    {
+      "label": "Comentarios del supervisor",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0zk4jav",
+        "columns": null
+      },
+      "id": "Field_0kqycln",
+      "key": "comentario",
+      "disabled": true,
+      "conditional": {
+        "hide": "=tipoLectura != \"MANUAL\""
+      }
+    }
+  ],
+  "type": "default",
+  "id": "factura",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

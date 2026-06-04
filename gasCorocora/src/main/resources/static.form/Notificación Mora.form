@@ -1,0 +1,52 @@
+{
+  "components": [
+    {
+      "label": "Id de tu Contrato",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0za604z",
+        "columns": null
+      },
+      "id": "Field_10q8npz",
+      "key": "idContrato",
+      "defaultValue": "${idContrato}",
+      "readonly": true,
+      "disabled": true
+    },
+    {
+      "label": "Monto de la Deuda",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0cj9htr",
+        "columns": null
+      },
+      "id": "Field_0u1wicu",
+      "key": "montoDeuda",
+      "defaultValue": "${montoDeuda}",
+      "readonly": true,
+      "disabled": true
+    },
+    {
+      "label": "Días de mora",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0p3unpt",
+        "columns": null
+      },
+      "id": "Field_0wibrkc",
+      "key": "diasMora",
+      "defaultValue": "${diasMora}",
+      "readonly": true,
+      "disabled": true
+    }
+  ],
+  "type": "default",
+  "id": "notificacionMora",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

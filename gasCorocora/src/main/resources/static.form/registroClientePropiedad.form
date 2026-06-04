@@ -1,0 +1,69 @@
+{
+  "components": [
+    {
+      "label": "Nombre de cliente",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_10hxkyl",
+        "columns": null
+      },
+      "id": "Field_1uujuuv",
+      "key": "nombreCliente",
+      "description": "Escriba su nombre completo",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Numero de documento",
+      "type": "number",
+      "layout": {
+        "row": "Row_0w9lkrq",
+        "columns": null
+      },
+      "id": "Field_06udp8s",
+      "key": "idCliente",
+      "description": "Digite su numero de cedula",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Numero de telefono",
+      "type": "number",
+      "layout": {
+        "row": "Row_07pswmm",
+        "columns": null
+      },
+      "id": "Field_1dzz73x",
+      "key": "telCliente",
+      "description": "Digite su numero de telefono",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Direccion de propiedad",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0cm51f7",
+        "columns": null
+      },
+      "id": "Field_035clij",
+      "key": "direccionPropiedad",
+      "description": "Escriba su direccion completa",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "registroCliente",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

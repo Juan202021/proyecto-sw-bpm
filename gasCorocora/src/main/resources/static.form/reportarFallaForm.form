@@ -1,0 +1,159 @@
+{
+  "components": [
+    {
+      "label": "Fecha y Hora",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0buj6le",
+        "columns": null
+      },
+      "id": "Field_1ve94wf",
+      "key": "fechaReporteFalla",
+      "disabled": true
+    },
+    {
+      "label": "Código Reporte Falla",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1x5wqrn",
+        "columns": null
+      },
+      "id": "Field_08h963a",
+      "key": "codigoReporteFalla",
+      "disabled": true
+    },
+    {
+      "label": "Domicilio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1x5wqrn",
+        "columns": null
+      },
+      "id": "Field_1f7zrud",
+      "key": "domicilio",
+      "disabled": true
+    },
+    {
+      "label": "Presion (kPa)",
+      "type": "number",
+      "layout": {
+        "row": "Row_15qi6zl",
+        "columns": null
+      },
+      "id": "Field_0gr6w3v",
+      "key": "presion",
+      "disabled": true
+    },
+    {
+      "label": "Caudal (m³/h)",
+      "type": "number",
+      "layout": {
+        "row": "Row_15qi6zl",
+        "columns": null
+      },
+      "id": "Field_0pek8en",
+      "key": "caudal",
+      "disabled": true
+    },
+    {
+      "label": "Temperatura (°C)",
+      "type": "number",
+      "layout": {
+        "row": "Row_077bljh",
+        "columns": null
+      },
+      "id": "Field_13v59bc",
+      "key": "temperatura",
+      "disabled": true
+    },
+    {
+      "label": "¿Comunicación Continua con Equipos de Medición?",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_077bljh",
+        "columns": null
+      },
+      "id": "Field_0z6p6hs",
+      "key": "comunicacionEquiposMedicionActiva",
+      "disabled": true
+    },
+    {
+      "label": "Falla",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0e28b2b",
+        "columns": null
+      },
+      "id": "Field_0q7c798",
+      "key": "falla",
+      "disabled": true
+    },
+    {
+      "label": "Resultado Tipo de Evento",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0rf8z15",
+        "columns": null
+      },
+      "id": "Field_160tys8",
+      "key": "tipoEvento",
+      "disabled": true
+    },
+    {
+      "label": "Tipo Anomalia",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0rf8z15",
+        "columns": null
+      },
+      "id": "Field_1k3t37k",
+      "key": "anomalia",
+      "disabled": true
+    },
+    {
+      "label": "¿Datos Validados?",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_00y8yqf",
+        "columns": null
+      },
+      "id": "Field_0rgmx71",
+      "key": "validado",
+      "disabled": true
+    },
+    {
+      "label": "Nombre Operador",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_00y8yqf",
+        "columns": null
+      },
+      "id": "Field_1hhbl38",
+      "key": "operador",
+      "disabled": true
+    },
+    {
+      "label": "¿Hay Trabajos Programados?",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1r4a7wg",
+        "columns": null
+      },
+      "id": "Field_05d6kk7",
+      "key": "hayTrabajosProgramados",
+      "disabled": true,
+      "conditional": {
+        "hide": "=hayTrabajosProgramados = \"\""
+      }
+    }
+  ],
+  "type": "default",
+  "id": "reportarFallaForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

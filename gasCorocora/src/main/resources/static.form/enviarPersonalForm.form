@@ -1,0 +1,109 @@
+{
+  "components": [
+    {
+      "subtype": "datetime",
+      "dateLabel": "Fecha",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0uki2qh",
+        "columns": null
+      },
+      "id": "Field_1wsaqc7",
+      "key": "fechaVisita",
+      "timeLabel": "Hora",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 15,
+      "disabled": false
+    },
+    {
+      "label": "Código de Orden de Trabajo",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0s8qr7y",
+        "columns": null
+      },
+      "id": "Field_1dxh7uq",
+      "key": "codigoOrdenTrabajo",
+      "disabled": true
+    },
+    {
+      "label": "Código de Agendamiento",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_05jb9lc",
+        "columns": null
+      },
+      "id": "Field_1bs3n2i",
+      "key": "codigoAgendamiento",
+      "disabled": true,
+      "conditional": {
+        "hide": "=codigoAgendamiento = null or codigoAgendamiento = \"\""
+      }
+    },
+    {
+      "label": "Domicilio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1h8sqbb",
+        "columns": null
+      },
+      "id": "Field_1hp6x3y",
+      "key": "domicilio",
+      "disabled": true
+    },
+    {
+      "label": "Falla",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0285guu",
+        "columns": null
+      },
+      "id": "Field_0asuyzw",
+      "key": "falla",
+      "disabled": true,
+      "conditional": {
+        "hide": "=falla = null or falla = \"\""
+      }
+    },
+    {
+      "label": "Técnicos a enviar",
+      "values": [
+        {
+          "label": "Juan Esteban",
+          "value": "Juan Esteban"
+        },
+        {
+          "label": "Manuel",
+          "value": "Manuel"
+        },
+        {
+          "label": "Vannesa",
+          "value": "Vannesa"
+        },
+        {
+          "label": "Jose Daniel",
+          "value": "Jose Daniel"
+        }
+      ],
+      "type": "taglist",
+      "layout": {
+        "row": "Row_02kunrh",
+        "columns": null
+      },
+      "id": "Field_1b5cah2",
+      "key": "tecnicosEnviados",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "enviarPersonalForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

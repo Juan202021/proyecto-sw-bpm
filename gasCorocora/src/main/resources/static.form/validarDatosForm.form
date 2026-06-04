@@ -1,0 +1,150 @@
+{
+  "components": [
+    {
+      "label": "Fecha y Hora",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ak2lyn",
+        "columns": null
+      },
+      "id": "Field_1d7w6qn",
+      "key": "fechaReporteFalla",
+      "disabled": true
+    },
+    {
+      "label": "Código Reporte Falla",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_03pyiks",
+        "columns": null
+      },
+      "id": "Field_037mehv",
+      "key": "codigoReporteFalla",
+      "disabled": true
+    },
+    {
+      "label": "Domicilio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_03pyiks",
+        "columns": null
+      },
+      "id": "Field_0c7xvu3",
+      "key": "domicilio",
+      "disabled": true
+    },
+    {
+      "label": "Presion (kPa)",
+      "type": "number",
+      "layout": {
+        "row": "Row_08wpmt9",
+        "columns": null
+      },
+      "id": "Field_000mhhk",
+      "key": "presion",
+      "disabled": true
+    },
+    {
+      "label": "Caudal (m³/h)",
+      "type": "number",
+      "layout": {
+        "row": "Row_08wpmt9",
+        "columns": null
+      },
+      "id": "Field_092tc9r",
+      "key": "caudal",
+      "disabled": true
+    },
+    {
+      "label": "Temperatura (°C)",
+      "type": "number",
+      "layout": {
+        "row": "Row_1vo36di",
+        "columns": null
+      },
+      "id": "Field_0yhlmtq",
+      "key": "temperatura",
+      "disabled": true
+    },
+    {
+      "label": "Comunicación Continua con Equipos de Medición",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1vo36di",
+        "columns": null
+      },
+      "id": "Field_1pdp2fe",
+      "key": "comunicacionEquiposMedicionActiva",
+      "disabled": true
+    },
+    {
+      "label": "Falla",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1k4bxye",
+        "columns": null
+      },
+      "id": "Field_10e3oz3",
+      "key": "falla",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Resultado Tipo de Evento",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0bbok5g",
+        "columns": null
+      },
+      "id": "Field_1br4lwc",
+      "key": "tipoEvento",
+      "disabled": true
+    },
+    {
+      "label": "Validar Resultado",
+      "values": [
+        {
+          "label": "Resultado Valido",
+          "value": "true"
+        },
+        {
+          "label": "Resultado NO Valido",
+          "value": "false"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_1dhch9h",
+        "columns": null
+      },
+      "id": "Field_1mlrjff",
+      "key": "validado",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Nombre Operador",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1dhch9h",
+        "columns": null
+      },
+      "id": "Field_1ezp2jf",
+      "key": "operador",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "validarDatosForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

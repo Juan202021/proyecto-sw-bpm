@@ -1,0 +1,44 @@
+{
+  "components": [
+    {
+      "label": "ID Orden Suspensión",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1fsoky0",
+        "columns": null
+      },
+      "id": "Field_1o4edr1",
+      "key": "IdOrder"
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Date",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0u613kd",
+        "columns": null
+      },
+      "id": "Field_1ygzsjv",
+      "key": "fechaOrden"
+    },
+    {
+      "label": "Técnico asignado",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_139l9v1",
+        "columns": null
+      },
+      "id": "Field_0kobdtv",
+      "key": "nombreTecnico"
+    }
+  ],
+  "type": "default",
+  "id": "ConfirmarSuspension",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="CalcularSubsidioDRD" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.45.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.24.0">
+  <decision id="CalcularSubsidio" name="Calcular subsidio" camunda:historyTimeToLive="180">
+    <decisionTable id="DecisionTable_0glaoj0">
+      <input id="Input_1" label="categoriaCliente" camunda:inputVariable="categoriaCliente">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>categoriaCliente</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="subsidio" name="subsidio" typeRef="long" />
+      <rule id="DecisionRule_1jv0vy8">
+        <inputEntry id="UnaryTests_199553u">
+          <text>"Residencial Básico"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qm2k4b">
+          <text>20</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1q9zva1">
+        <inputEntry id="UnaryTests_1o96q26">
+          <text>"Residencial Medio"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01hx3cm">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05dnffd">
+        <inputEntry id="UnaryTests_0bnqod4">
+          <text>"Alto Consumo"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08wuwwc">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_02yqvng_di" dmnElementRef="CalcularSubsidio">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

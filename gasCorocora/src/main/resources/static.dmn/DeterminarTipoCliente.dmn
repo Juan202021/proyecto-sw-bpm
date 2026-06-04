@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="tipoClienteDRD" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.45.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.24.0">
+  <decision id="tipoCliente" name="Determinar tipo de cliente" camunda:historyTimeToLive="180">
+    <decisionTable id="DecisionTable_177apos">
+      <input id="Input_1" label="consumo" camunda:inputVariable="consumo">
+        <inputExpression id="InputExpression_1" typeRef="long">
+          <text>consumo</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="categoriaCliente" name="categoriaCliente" typeRef="string" />
+      <rule id="DecisionRule_0yaogs2">
+        <inputEntry id="UnaryTests_0yqk8nk">
+          <text>&lt;50</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1uy0fjh">
+          <text>"Residencial Básico"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0lsv3eq">
+        <inputEntry id="UnaryTests_1gia0wo">
+          <text>50-200</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hjc5k4">
+          <text>"Residencial Medio"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0u5ct39">
+        <inputEntry id="UnaryTests_1qnrg54">
+          <text>&gt;200</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0e9kzbz">
+          <text>"Alto Consumo"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_10xcjtf_di" dmnElementRef="tipoCliente">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
