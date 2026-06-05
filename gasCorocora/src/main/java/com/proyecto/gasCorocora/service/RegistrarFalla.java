@@ -38,6 +38,7 @@ public class RegistrarFalla implements JavaDelegate {
         System.out.println("\n# RegistrarFalla");
 
         execution.setVariable("reportes", datosCompactados);
+        execution.setVariable("debeReportarFalla", !existeReporteDeFallaPendiente(execution));
         System.out.println(datosCompactados);
 //        RuntimeService runtimeService = execution.getProcessEngineServices()
 //                .getRuntimeService();
@@ -66,5 +67,21 @@ public class RegistrarFalla implements JavaDelegate {
 
         compactado = new ArrayList<>(set);
         return compactado;
+    }
+
+    private boolean existeReporteDeFallaPendiente(DelegateExecution execution) {
+        RuntimeService runtimeService = execution.getProcessEngineServices().getRuntimeService();
+        long reportesPendientes = runtimeService
+                .createProcessInstanceQuery()
+                .processDefinitionKey("gestionar_reportes_fallas")
+                .active()
+                .count();
+
+        if (reportesPendientes > 0) {
+            System.out.println("Ya existe un reporte de fallas pendiente. No se crea otro.");
+            return true;
+        }
+
+        return false;
     }
 }

@@ -70,6 +70,16 @@ services:
     networks:
       - my_network
 
+  facturaservice:
+    build:
+      context: ./factura-service
+      dockerfile: Dockerfile
+    container_name: facturaservice
+    ports:
+      - "5000:5000"
+    networks:
+      - my_network
+
   software1cliente:
     build:
       context: ./software1.cliente

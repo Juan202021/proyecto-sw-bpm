@@ -1,4 +1,4 @@
-package com.example.demo.delegate;
+package com.proyecto.gasCorocora.service;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;

@@ -1,6 +1,5 @@
-package com.example.runner.web;
+package com.proyecto.gasCorocora.service;
 
-import com.example.runner.service.WorkflowService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

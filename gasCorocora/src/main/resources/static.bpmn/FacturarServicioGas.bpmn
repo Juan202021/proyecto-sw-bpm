@@ -20,10 +20,11 @@
         <bpmn:flowNodeRef>Activity_0kjt35z</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1u1mrjh</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_03u9eyg</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0ugerbt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1x2jmpq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0fwntzp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0sur232</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ugerbt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0mwsc4b</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:businessRuleTask id="Activity_0qfaemj" name="Validar lectura de consumo" camunda:resultVariable="resultado" camunda:decisionRef="validarLectura" camunda:mapDecisionResult="singleEntry">
@@ -141,33 +142,72 @@
       <bpmn:incoming>Flow_01t6she</bpmn:incoming>
       <bpmn:outgoing>Flow_0gbe4ge</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_183jz1z" sourceRef="Activity_1x2jmpq" targetRef="Activity_0ugerbt" />
-    <bpmn:userTask id="Activity_0ugerbt" name="Enviar factura por correo" camunda:formRef="factura" camunda:formRefBinding="latest">
-      <bpmn:extensionElements />
-      <bpmn:incoming>Flow_183jz1z</bpmn:incoming>
-      <bpmn:outgoing>Flow_1l33z5y</bpmn:outgoing>
-    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_183jz1z" sourceRef="Activity_1x2jmpq" targetRef="Activity_0mwsc4b" />
     <bpmn:serviceTask id="Activity_1x2jmpq" name="Aplicar descuentos de subsidio" camunda:expression="${(totalFactura - (subsidio * totalFactura / 100)).longValue()}" camunda:resultVariable="totalDescuento">
       <bpmn:incoming>Flow_0gbe4ge</bpmn:incoming>
       <bpmn:outgoing>Flow_183jz1z</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1v4ks53" sourceRef="Activity_0sur232" targetRef="Event_0fwntzp" />
     <bpmn:endEvent id="Event_0fwntzp" name="finalizó facturación">
       <bpmn:incoming>Flow_1v4ks53</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1v4ks53" sourceRef="Activity_0sur232" targetRef="Event_0fwntzp" />
     <bpmn:serviceTask id="Activity_0sur232" name="Guardar Factura" camunda:delegateExpression="${saveFactura}">
       <bpmn:incoming>Flow_1l33z5y</bpmn:incoming>
       <bpmn:outgoing>Flow_1v4ks53</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_0ugerbt" name="Enviar factura por correo" camunda:formRef="factura" camunda:formRefBinding="latest">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_1t1nqyo</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l33z5y</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1t1nqyo" sourceRef="Activity_0mwsc4b" targetRef="Activity_0ugerbt" />
+    <bpmn:serviceTask id="Activity_0mwsc4b" name="generar factura">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="url">http://host.docker.internal:5000/factura</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">JSON.stringify({
+  clienteId: clienteId,
+  categoriaCliente: categoriaCliente,
+  consumo: consumo,
+  resultado: resultado,
+  tarifa: tarifa,
+  subsidio: subsidio,
+  totalFactura: totalFactura,
+  totalDescuento: totalDescuento,
+  tipoLectura: tipoLectura,
+  fecha: fecha,
+  medidor: typeof medidor !== "undefined" ? medidor : null,
+  operador: typeof operador !== "undefined" ? operador : null,
+  observaciones: typeof observaciones !== "undefined" ? observaciones : null,
+  comentario: typeof comentario !== "undefined" ? comentario : null,
+  productos: "Servicio de gas domiciliario; Consumo: " + consumo + "; Tarifa: " + tarifa
+})</camunda:script>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="respuestaFactura">${response}</camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_183jz1z</bpmn:incoming>
+      <bpmn:outgoing>Flow_1t1nqyo</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_18xqn1c">
       <bpmndi:BPMNShape id="Participant_0b5prxv_di" bpmnElement="Participant_0b5prxv" isHorizontal="true">
-        <dc:Bounds x="132" y="80" width="1956" height="620" />
+        <dc:Bounds x="132" y="80" width="2068" height="620" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1afj5dj_di" bpmnElement="FacturaGas" isHorizontal="true">
-        <dc:Bounds x="162" y="80" width="1926" height="620" />
+        <dc:Bounds x="162" y="80" width="2038" height="620" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_11i30j5" bpmnElement="Activity_0qfaemj">
@@ -233,20 +273,24 @@
       <bpmndi:BPMNShape id="BPMNShape_0ni24rh" bpmnElement="Activity_03u9eyg">
         <dc:Bounds x="1290" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0189nyk_di" bpmnElement="Activity_0ugerbt">
-        <dc:Bounds x="1650" y="140" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0voi83g_di" bpmnElement="Activity_1x2jmpq">
         <dc:Bounds x="1470" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0fwntzp_di" bpmnElement="Event_0fwntzp">
-        <dc:Bounds x="1952" y="162" width="36" height="36" />
+        <dc:Bounds x="2122" y="162" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1943" y="205" width="54" height="27" />
+          <dc:Bounds x="2113" y="205" width="54" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1pfhe7g_di" bpmnElement="Activity_0sur232">
-        <dc:Bounds x="1800" y="140" width="100" height="80" />
+        <dc:Bounds x="1970" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0189nyk_di" bpmnElement="Activity_0ugerbt">
+        <dc:Bounds x="1820" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dhl5cu_di" bpmnElement="Activity_0mwsc4b">
+        <dc:Bounds x="1640" y="140" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_0ptc3ls" bpmnElement="Flow_0wqzfx8">
@@ -305,8 +349,8 @@
         <di:waypoint x="1470" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1l33z5y_di" bpmnElement="Flow_1l33z5y">
-        <di:waypoint x="1750" y="180" />
-        <di:waypoint x="1800" y="180" />
+        <di:waypoint x="1920" y="180" />
+        <di:waypoint x="1970" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1g3axxo_di" bpmnElement="Flow_1g3axxo">
         <di:waypoint x="1160" y="280" />
@@ -347,11 +391,15 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_183jz1z_di" bpmnElement="Flow_183jz1z">
         <di:waypoint x="1570" y="180" />
-        <di:waypoint x="1650" y="180" />
+        <di:waypoint x="1640" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1v4ks53_di" bpmnElement="Flow_1v4ks53">
-        <di:waypoint x="1900" y="180" />
-        <di:waypoint x="1952" y="180" />
+        <di:waypoint x="2070" y="180" />
+        <di:waypoint x="2122" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1t1nqyo_di" bpmnElement="Flow_1t1nqyo">
+        <di:waypoint x="1740" y="180" />
+        <di:waypoint x="1820" y="180" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
