@@ -1,0 +1,46 @@
+{
+  "components": [
+    {
+      "label": "Código de Orden de Trabajo",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0kc9gib",
+        "columns": null
+      },
+      "id": "Field_0pdybsn",
+      "key": "codigoOrdenTrabajo"
+    },
+    {
+      "label": "Tipo de Suspensión",
+      "values": [
+        {
+          "label": "Suspender desde central",
+          "value": "true"
+        },
+        {
+          "label": "Suspender manualmente",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_1qoasqz",
+        "columns": null
+      },
+      "id": "Field_09ooqtk",
+      "key": "suspendidoDesdeCentral",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "tipoSuspensionForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

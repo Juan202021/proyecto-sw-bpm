@@ -1,0 +1,44 @@
+{
+  "components": [
+    {
+      "label": "ID Orden Reconexion",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_07zjkbg",
+        "columns": null
+      },
+      "id": "Field_1aq9uqx",
+      "key": "idReconexion"
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Fecha Reconexión",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0j4cc58",
+        "columns": null
+      },
+      "id": "Field_0gwvky2",
+      "key": "datetime_y9dtw"
+    },
+    {
+      "label": "Nombre del técnico",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0sctv9w",
+        "columns": null
+      },
+      "id": "Field_0zfid4h",
+      "key": "textfield_0fqm5"
+    }
+  ],
+  "type": "default",
+  "id": "confirmarReconexion",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

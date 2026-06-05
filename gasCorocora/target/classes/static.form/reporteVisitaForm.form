@@ -1,0 +1,150 @@
+{
+  "components": [
+    {
+      "subtype": "datetime",
+      "dateLabel": "Fecha",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0t3j4jd",
+        "columns": null
+      },
+      "id": "Field_19r0nhu",
+      "key": "fechaReporte",
+      "timeLabel": "Hora",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 1,
+      "validate": {
+        "required": true
+      },
+      "disallowPassedDates": true
+    },
+    {
+      "label": "Código de Orden de Trabajo",
+      "type": "number",
+      "layout": {
+        "row": "Row_06m6x54",
+        "columns": null
+      },
+      "id": "Field_0f6euys",
+      "key": "codigoOrdenTrabajo",
+      "disabled": true
+    },
+    {
+      "label": "Código de Agendamiento",
+      "type": "number",
+      "layout": {
+        "row": "Row_06m6x54",
+        "columns": null
+      },
+      "id": "Field_1igalmn",
+      "key": "codigoAgendamiento",
+      "disabled": true,
+      "conditional": {
+        "hide": "=codigoAgendamiento = \"\""
+      }
+    },
+    {
+      "label": "Domicilio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1uyrk74",
+        "columns": null
+      },
+      "id": "Field_0gutof9",
+      "key": "domicilio",
+      "disabled": true
+    },
+    {
+      "label": "Falla reportada",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_149xgy1",
+        "columns": null
+      },
+      "id": "Field_0ai2int",
+      "key": "falla",
+      "disabled": true
+    },
+    {
+      "label": "Tipo de Solución Aplicada",
+      "values": [
+        {
+          "label": "Manual",
+          "value": "manual"
+        },
+        {
+          "label": "Especializada",
+          "value": "especializada"
+        },
+        {
+          "label": "Sin Intervención",
+          "value": "sinIntervencion"
+        },
+        {
+          "label": "Sin Solucion",
+          "value": "sinSolucion"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_0kzlhy8",
+        "columns": null
+      },
+      "id": "Field_1xipiom",
+      "key": "tipoSolucion",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Cobro Extra",
+      "type": "number",
+      "layout": {
+        "row": "Row_0kzlhy8",
+        "columns": null
+      },
+      "id": "Field_0rap6dn",
+      "key": "cobroExtra",
+      "validate": {
+        "required": true
+      },
+      "decimalDigits": 2,
+      "increment": "0.01"
+    },
+    {
+      "label": "Procedimiento Realizado",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1gsj7ao",
+        "columns": null
+      },
+      "id": "Field_0bt9ptz",
+      "key": "procedimiento",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Nombre del Técnico que realiza el reporte",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1b8gpv5",
+        "columns": null
+      },
+      "id": "Field_1u942j6",
+      "key": "nombreTecnicoReporta",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "reporteVisita",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

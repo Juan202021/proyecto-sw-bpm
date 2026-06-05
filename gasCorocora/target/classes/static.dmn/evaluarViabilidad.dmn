@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0viq7r2" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.45.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.24.0">
+  <decision id="evaluarViabilidad" name="Evaluar Viabilidad" camunda:historyTimeToLive="30">
+    <decisionTable id="DecisionTable_0y4yevo" hitPolicy="FIRST">
+      <input id="Input_1" label="distanciaRed" camunda:inputVariable="distanciaRed">
+        <inputExpression id="InputExpression_1" typeRef="double">
+          <text>distanciaRed</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1kn9lm6" label="condicionesSeguridad" camunda:inputVariable="condicionesSeguridad">
+        <inputExpression id="LiteralExpression_1u5yfvx" typeRef="string">
+          <text>condicionesSeguridad</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0av6qo2">
+          <text>"Optimas","Aceptables","Deficientes"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" label="viabilidad" name="viabilidad" typeRef="string">
+        <outputValues id="UnaryTests_1piv4ix">
+          <text>"Si","No","Condicionado"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_0nv57v1">
+        <inputEntry id="UnaryTests_1823fv6">
+          <text>&lt; 50</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gcp8h2">
+          <text>"Optimas","Aceptables"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0g2q6ds">
+          <text>"Si"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xdofh2">
+        <inputEntry id="UnaryTests_03cjskm">
+          <text>&lt; 50</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e1fr15">
+          <text>"Deficientes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gi7l2u">
+          <text>"Condicionado"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0yym07p">
+        <inputEntry id="UnaryTests_17s5djs">
+          <text>[50..100]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xfewgz">
+          <text>"Optimas","Aceptables"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_13upjdk">
+          <text>"Condicionado"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17kqel1">
+        <inputEntry id="UnaryTests_1xla6w7">
+          <text>[50..100]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nm70bo">
+          <text>"Deficientes"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03p9nhg">
+          <text>"No"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tbi1f5">
+        <inputEntry id="UnaryTests_0bbhq94">
+          <text>&gt; 100</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wanc02">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1q2sio0">
+          <text>"No"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_17y86mg_di" dmnElementRef="evaluarViabilidad">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

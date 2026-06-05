@@ -1,0 +1,88 @@
+{
+  "components": [
+    {
+      "text": "Lectura Manual",
+      "type": "text",
+      "layout": {
+        "row": "Row_1hd6zuf",
+        "columns": null
+      },
+      "id": "Field_00hjvjc"
+    },
+    {
+      "label": "Operador",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0x38fi5",
+        "columns": null
+      },
+      "id": "Field_11ol2to",
+      "key": "operador",
+      "validate": {
+        "required": true
+      },
+      "defaultValue": "Vanessa"
+    },
+    {
+      "label": "Número medidor",
+      "type": "number",
+      "layout": {
+        "row": "Row_1ltscfp",
+        "columns": null
+      },
+      "id": "Field_1urwxr7",
+      "key": "medidor",
+      "validate": {
+        "required": true
+      },
+      "decimalDigits": 0,
+      "defaultValue": 4789
+    },
+    {
+      "label": "Consumo",
+      "type": "number",
+      "layout": {
+        "row": "Row_09j8h64",
+        "columns": null
+      },
+      "id": "Field_0fq18ru",
+      "key": "consumo",
+      "validate": {
+        "required": true,
+        "min": "0",
+        "max": "1000"
+      }
+    },
+    {
+      "subtype": "date",
+      "dateLabel": "Fecha de revision",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_1kullad",
+        "columns": null
+      },
+      "id": "Field_1r7xy99",
+      "key": "fecha"
+    },
+    {
+      "label": "Observaciones",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1yef7pj",
+        "columns": null
+      },
+      "id": "Field_0xlodpi",
+      "key": "observaciones",
+      "defaultValue": "Medidor con fallas. Se recomienda cambio"
+    }
+  ],
+  "type": "default",
+  "id": "LecturaManual",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

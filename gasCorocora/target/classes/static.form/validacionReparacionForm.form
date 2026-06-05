@@ -1,0 +1,47 @@
+{
+  "components": [
+    {
+      "label": "Código de Orden de Trabajo",
+      "type": "number",
+      "layout": {
+        "row": "Row_1hmxzjj",
+        "columns": null
+      },
+      "id": "Field_1lxziqq",
+      "key": "codigoOrdenTrabajo",
+      "disabled": true
+    },
+    {
+      "label": "¿La Reparación fue exitosa?",
+      "values": [
+        {
+          "label": "Sí",
+          "value": "true"
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_0hd7bfl",
+        "columns": null
+      },
+      "id": "Field_1y7y5qj",
+      "key": "reparado",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "validacionReparacionForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

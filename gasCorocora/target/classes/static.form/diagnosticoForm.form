@@ -1,0 +1,68 @@
+{
+  "components": [
+    {
+      "subtype": "datetime",
+      "dateLabel": "Fecha",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_0qo7bb8",
+        "columns": null
+      },
+      "id": "Field_0971t9c",
+      "key": "fechaDiagnostico",
+      "timeLabel": "Hora",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 1,
+      "validate": {
+        "required": true
+      },
+      "disallowPassedDates": true
+    },
+    {
+      "label": "Código de Orden de Trabajo",
+      "type": "number",
+      "layout": {
+        "row": "Row_1kcelem",
+        "columns": null
+      },
+      "id": "Field_131ieu8",
+      "key": "codigoOrdenTrabajo",
+      "disabled": true
+    },
+    {
+      "label": "Nombre del Técnico",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1vxnhz6",
+        "columns": null
+      },
+      "id": "Field_1kkbdxv",
+      "key": "nombreTecnicoDiagnostica",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Diagnostico",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1raufz3",
+        "columns": null
+      },
+      "id": "Field_06m8xtb",
+      "key": "diagnostico",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "diagnosticoForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

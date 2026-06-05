@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_12m7dhx" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.44.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.24.0">
+  <decision id="determinarValorSolucion" name="Determinar valor de la solución" camunda:historyTimeToLive="100">
+    <decisionTable id="DecisionTable_1mev35m">
+      <input id="Input_1" label="Tipo solución" camunda:inputVariable="tipoSolucion">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Valor Solución" name="valorSolucion" typeRef="long" />
+      <rule id="DecisionRule_1yonul8">
+        <inputEntry id="UnaryTests_01updhy">
+          <text>"Manual"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1263mtp">
+          <text>150000</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1wlasda">
+        <inputEntry id="UnaryTests_0uq5hz4">
+          <text>"Especializada"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11dw0nc">
+          <text>300000</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17fqv84">
+        <inputEntry id="UnaryTests_0xamleh">
+          <text>"sinIntervencion"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ptri9r">
+          <text>35000</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1qdofsr">
+        <inputEntry id="UnaryTests_01t5kff">
+          <text>"sinSolucion"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00qq6w8">
+          <text>35000</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_1qcahcj_di" dmnElementRef="determinarValorSolucion">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

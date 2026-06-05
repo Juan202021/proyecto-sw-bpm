@@ -1,0 +1,70 @@
+{
+  "components": [
+    {
+      "label": "Distancia a punto de red",
+      "type": "number",
+      "layout": {
+        "row": "Row_0x2h6xp",
+        "columns": null
+      },
+      "id": "Field_1o9osc3",
+      "key": "distanciaRed",
+      "description": "Mida y registre la distancia al punto de red mas cercano",
+      "validate": {
+        "required": true,
+        "min": "1"
+      }
+    },
+    {
+      "label": "Condiciones de seguridad",
+      "values": [
+        {
+          "label": "Optimas",
+          "value": "Optimas"
+        },
+        {
+          "label": "Aceptables",
+          "value": "Aceptables"
+        },
+        {
+          "label": "Deficientes",
+          "value": "Deficientes"
+        }
+      ],
+      "type": "select",
+      "layout": {
+        "row": "Row_1476mrb",
+        "columns": null
+      },
+      "id": "Field_1lr7in6",
+      "key": "condicionesSeguridad",
+      "description": "Seleccione una opcion",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Observaciones",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_18o2q8l",
+        "columns": null
+      },
+      "id": "Field_0wnnexm",
+      "key": "observa",
+      "description": "Registre las observaciones encontradas",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "revisarCondiciones",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

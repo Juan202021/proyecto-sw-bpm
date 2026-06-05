@@ -1,0 +1,68 @@
+{
+  "components": [
+    {
+      "label": "Código de Agendamiento",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1d4s16j",
+        "columns": null
+      },
+      "id": "Field_1a65c5y",
+      "key": "codigoAgendamiento"
+    },
+    {
+      "label": "Domicilio",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1rkib29",
+        "columns": null
+      },
+      "id": "Field_0whn9jc",
+      "key": "domicilio",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Falla",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0usmft3",
+        "columns": null
+      },
+      "id": "Field_088v9tb",
+      "key": "falla",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "subtype": "datetime",
+      "dateLabel": "Fecha de visita",
+      "type": "datetime",
+      "layout": {
+        "row": "Row_1pl5jfj",
+        "columns": null
+      },
+      "id": "Field_0y4kge8",
+      "key": "fechaVisita",
+      "timeLabel": "Hora de visita",
+      "timeSerializingFormat": "utc_offset",
+      "timeInterval": 15,
+      "validate": {
+        "required": false
+      },
+      "disallowPassedDates": true,
+      "use24h": true
+    }
+  ],
+  "type": "default",
+  "id": "agendarVisitaForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

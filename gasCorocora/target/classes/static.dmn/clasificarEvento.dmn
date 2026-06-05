@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_01iqbqu" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.44.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.24.0">
+  <decision id="clasificarEvento" name="Decision 1" camunda:historyTimeToLive="100">
+    <decisionTable id="DecisionTable_0tsrayh" hitPolicy="FIRST">
+      <input id="Input_1" label="Presión (kPa)" camunda:inputVariable="presion">
+        <inputExpression id="InputExpression_1" typeRef="double">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0d5x877" label="Caudal (m³/h)" camunda:inputVariable="caudal">
+        <inputExpression id="LiteralExpression_1k9dcvl" typeRef="double">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1k74rww" label="Temperatura (°C)" camunda:inputVariable="temperatura">
+        <inputExpression id="LiteralExpression_02okexb" typeRef="double">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Tipo de Evento" name="tipoEvento" typeRef="string" />
+      <rule id="DecisionRule_1n2b11k">
+        <inputEntry id="UnaryTests_0jja2g0">
+          <text>&lt; 0</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qgigue">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tfbf5c">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qw15gl">
+          <text>"Error de medicion"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_14ny9yo">
+        <inputEntry id="UnaryTests_0ukf45p">
+          <text>&gt; 3000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xxq9sn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ecmroy">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18hgsrd">
+          <text>"Error de medicion"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lx29u1">
+        <inputEntry id="UnaryTests_1nx8ki9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0577bjh">
+          <text>&lt; 0</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09se3ea">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0me68wv">
+          <text>"Error de medicion"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1c6psx2">
+        <inputEntry id="UnaryTests_07ed80k">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wvlqqq">
+          <text>&gt; 6000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0640og5">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1mnlwex">
+          <text>"Error de medicion"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1wko87k">
+        <inputEntry id="UnaryTests_1cbojdq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xebfru">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xe6voi">
+          <text>&lt; 0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ejgl5s">
+          <text>"Error de medicion"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0q7tv4r">
+        <inputEntry id="UnaryTests_166as1n">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fry51q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h0t0la">
+          <text>&gt; 60</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1h4oaec">
+          <text>"Error de medicion"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16a4vif">
+        <inputEntry id="UnaryTests_06i3mep">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kuzsox">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14umrsz">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1uifsak">
+          <text>"Anomalia real"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_0f4mbn4_di" dmnElementRef="clasificarEvento">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

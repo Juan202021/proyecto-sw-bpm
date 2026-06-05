@@ -1,0 +1,43 @@
+{
+  "components": [
+    {
+      "label": "ID Del Contrato",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_12t36y8",
+        "columns": null
+      },
+      "id": "Field_1rml3e6",
+      "key": "idContrato"
+    },
+    {
+      "label": "Días De Mora",
+      "type": "number",
+      "layout": {
+        "row": "Row_1it8ilg",
+        "columns": null
+      },
+      "id": "Field_04o3g0u",
+      "key": "diasMora"
+    },
+    {
+      "label": "Monto Deuda",
+      "type": "number",
+      "layout": {
+        "row": "Row_1cdwfs0",
+        "columns": null
+      },
+      "id": "Field_08aeznb",
+      "key": "montoDeuda"
+    }
+  ],
+  "type": "default",
+  "id": "RegistrarMora",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.24.0",
+  "schemaVersion": 19
+}

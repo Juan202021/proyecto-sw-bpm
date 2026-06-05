@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_190umz4" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.44.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.24.0">
+  <decision id="ClasificarSuspension" name="ClasificarSuspensionOk" camunda:historyTimeToLive="300">
+    <decisionTable id="DecisionTable_01pxgfx" hitPolicy="FIRST">
+      <input id="Input_1" label="Dias Mora" camunda:inputVariable="diasMora">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1eywu75" label="Monto deuda" camunda:inputVariable="montoDeuda">
+        <inputExpression id="LiteralExpression_0ki8gup" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Orden Suspensión" name="ordenSuspension" typeRef="boolean" />
+      <output id="OutputClause_03zkihf" label="Dias gracia" name="diasGracia" typeRef="integer" />
+      <rule id="DecisionRule_1epneti">
+        <inputEntry id="UnaryTests_1eyplq0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17uqjp6">
+          <text>&lt;= 0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11ac9vg">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_059hd85">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mzs147">
+        <inputEntry id="UnaryTests_1s2q2eq">
+          <text>&gt;= 30</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pb8ay5">
+          <text>&gt;0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jdk8el">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0m9e01x">
+          <text>3</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_12kb7il">
+        <inputEntry id="UnaryTests_085pka5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06y0zc2">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0i2zxsv">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_04uzb05">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_1a4gc3c_di" dmnElementRef="ClasificarSuspension">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
