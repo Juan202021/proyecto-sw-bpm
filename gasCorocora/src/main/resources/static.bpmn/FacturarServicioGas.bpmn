@@ -21,10 +21,11 @@
         <bpmn:flowNodeRef>Activity_1u1mrjh</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_03u9eyg</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1x2jmpq</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_0fwntzp</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_0sur232</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0ugerbt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0mwsc4b</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0fwntzp</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0sur232</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_11xskn3</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:businessRuleTask id="Activity_0qfaemj" name="Validar lectura de consumo" camunda:resultVariable="resultado" camunda:decisionRef="validarLectura" camunda:mapDecisionResult="singleEntry">
@@ -58,7 +59,7 @@
           <camunda:formField id="consumo" label="Consumo" type="long" />
           <camunda:formField id="clienteId" label="ID del cliente" type="string" />
           <camunda:formField id="tarifa" label="Tarifa %" type="long" defaultValue="100" />
-          <camunda:formField id="fecha" label="Fecha de revision" type="date" />
+          <camunda:formField id="fecha" label="Fecha de revision" type="date" datePattern="dd/MM/yyyy" />
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:outputParameter name="tipoLectura">AUTOMATICA</camunda:outputParameter>
@@ -76,8 +77,16 @@
       <bpmn:outgoing>Flow_01t6she</bpmn:outgoing>
       <bpmn:outgoing>Flow_1g384le</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_0yys6x3" name="Revisar caso para facturacion manual" camunda:formRef="aprobarFacturacion" camunda:formRefBinding="latest">
-      <bpmn:extensionElements />
+    <bpmn:userTask id="Activity_0yys6x3" name="Revisar caso para facturacion manual">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="aprobarFactura" label="Aprueba facturacion manual" type="boolean" defaultValue="true" />
+          <camunda:formField id="comentario" label="Comentarios del supervisor" type="string" defaultValue="Realizar evaluacion" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="facturacionManual">${true}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1g384le</bpmn:incoming>
       <bpmn:outgoing>Flow_0ecg684</bpmn:outgoing>
     </bpmn:userTask>
@@ -99,8 +108,15 @@
       <bpmn:incoming>Flow_0qi4aqk</bpmn:incoming>
       <bpmn:terminateEventDefinition id="TerminateEventDefinition_00vgrcv" />
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_0kjt35z" name="Realizar lectura manualmente" camunda:formRef="LecturaManual" camunda:formRefBinding="latest" camunda:assignee="operador">
+    <bpmn:userTask id="Activity_0kjt35z" name="Realizar lectura manualmente" camunda:assignee="operador">
       <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="operador" label="Operador" type="string" defaultValue="Vanessa" />
+          <camunda:formField id="medidor" label="Numero medidor" type="long" defaultValue="4789" />
+          <camunda:formField id="consumo" label="Consumo" type="long" />
+          <camunda:formField id="fecha" label="Fecha de revision" type="date" />
+          <camunda:formField id="observaciones" label="Observaciones" type="string" defaultValue="Medidor con fallas. Se recomienda cambio" />
+        </camunda:formData>
         <camunda:inputOutput>
           <camunda:outputParameter name="tipoLectura">MANUAL</camunda:outputParameter>
         </camunda:inputOutput>
@@ -123,7 +139,7 @@
     <bpmn:sequenceFlow id="Flow_1ha1dq5" sourceRef="Activity_1u1mrjh" targetRef="Activity_0ygb5c4" />
     <bpmn:sequenceFlow id="Flow_01t6she" name="No" sourceRef="Gateway_0g6kmjb" targetRef="Activity_03u9eyg" />
     <bpmn:sequenceFlow id="Flow_0gbe4ge" sourceRef="Activity_03u9eyg" targetRef="Activity_1x2jmpq" />
-    <bpmn:sequenceFlow id="Flow_1l33z5y" sourceRef="Activity_0ugerbt" targetRef="Activity_0sur232" />
+    <bpmn:sequenceFlow id="Flow_1l33z5y" sourceRef="Activity_0ugerbt" targetRef="Activity_11xskn3" />
     <bpmn:sequenceFlow id="Flow_1g3axxo" sourceRef="Activity_0ygb5c4" targetRef="Gateway_0g6kmjb" />
     <bpmn:sequenceFlow id="Flow_1g384le" name="Si" sourceRef="Gateway_0g6kmjb" targetRef="Activity_0yys6x3">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${alerta == "POSIBLE FRAUDE"}</bpmn:conditionExpression>
@@ -148,21 +164,10 @@
       <bpmn:outgoing>Flow_183jz1z</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_1v4ks53" sourceRef="Activity_0sur232" targetRef="Event_0fwntzp" />
-    <bpmn:endEvent id="Event_0fwntzp" name="finalizó facturación">
-      <bpmn:incoming>Flow_1v4ks53</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:serviceTask id="Activity_0sur232" name="Guardar Factura" camunda:delegateExpression="${saveFactura}">
-      <bpmn:incoming>Flow_1l33z5y</bpmn:incoming>
-      <bpmn:outgoing>Flow_1v4ks53</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:userTask id="Activity_0ugerbt" name="Enviar factura por correo" camunda:formRef="factura" camunda:formRefBinding="latest">
-      <bpmn:extensionElements />
-      <bpmn:incoming>Flow_1t1nqyo</bpmn:incoming>
-      <bpmn:outgoing>Flow_1l33z5y</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1t1nqyo" sourceRef="Activity_0mwsc4b" targetRef="Activity_0ugerbt" />
     <bpmn:serviceTask id="Activity_0mwsc4b" name="generar factura">
       <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${registrarLogFactura}" event="end" />
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
@@ -199,15 +204,53 @@
       <bpmn:incoming>Flow_183jz1z</bpmn:incoming>
       <bpmn:outgoing>Flow_1t1nqyo</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_0ugerbt" name="Enviar factura por correo">
+      <bpmn:extensionElements>
+        <camunda:taskListener event="create">
+          <camunda:script scriptFormat="javascript">var tipo = task.getExecution().getVariable("tipoLectura");
+var manual = task.getExecution().getVariable("facturacionManual");
+task.setVariableLocal("esFacturaManual", tipo === "MANUAL" || manual === true || manual === "true");</camunda:script>
+        </camunda:taskListener>
+        <camunda:formData>
+          <camunda:formField id="clienteId" label="ID del cliente" type="string" />
+          <camunda:formField id="categoriaCliente" label="Tipo de cliente" type="string" />
+          <camunda:formField id="consumo" label="Consumo leido" type="long" />
+          <camunda:formField id="resultado" label="Resultado de lectura" type="string" />
+          <camunda:formField id="tarifa" label="Tarifa cobrada" type="long" />
+          <camunda:formField id="subsidio" label="Descuento subsidio %" type="long" />
+          <camunda:formField id="totalFactura" label="Factura total" type="long" />
+          <camunda:formField id="totalDescuento" label="Factura total aplicando descuentos" type="long" />
+          <camunda:formField id="fecha" label="Fecha de revision" type="string" />
+          <camunda:formField id="medidor" label="Numero medidor" type="string" />
+          <camunda:formField id="operador" label="Operador" type="string" />
+          <camunda:formField id="observaciones" label="Observaciones del operador" type="string" />
+          <camunda:formField id="comentario" label="Comentarios del supervisor" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1t1nqyo</bpmn:incoming>
+      <bpmn:outgoing>Flow_1l33z5y</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0fwntzp" name="finalizó facturación">
+      <bpmn:incoming>Flow_1v4ks53</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_0sur232" name="Guardar Factura" camunda:class="com.proyecto.gasCorocora.service.SaveFactura">
+      <bpmn:incoming>Flow_14aywde</bpmn:incoming>
+      <bpmn:outgoing>Flow_1v4ks53</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_14aywde" sourceRef="Activity_11xskn3" targetRef="Activity_0sur232" />
+    <bpmn:serviceTask id="Activity_11xskn3" name="Sincronizar factura externa" camunda:type="external" camunda:topic="sincronizar-factura">
+      <bpmn:incoming>Flow_1l33z5y</bpmn:incoming>
+      <bpmn:outgoing>Flow_14aywde</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_18xqn1c">
       <bpmndi:BPMNShape id="Participant_0b5prxv_di" bpmnElement="Participant_0b5prxv" isHorizontal="true">
-        <dc:Bounds x="132" y="80" width="2068" height="620" />
+        <dc:Bounds x="132" y="80" width="2358" height="620" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1afj5dj_di" bpmnElement="FacturaGas" isHorizontal="true">
-        <dc:Bounds x="162" y="80" width="2038" height="620" />
+        <dc:Bounds x="162" y="80" width="2328" height="620" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_11i30j5" bpmnElement="Activity_0qfaemj">
@@ -276,21 +319,25 @@
       <bpmndi:BPMNShape id="Activity_0voi83g_di" bpmnElement="Activity_1x2jmpq">
         <dc:Bounds x="1470" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0fwntzp_di" bpmnElement="Event_0fwntzp">
-        <dc:Bounds x="2122" y="162" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2113" y="205" width="54" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1pfhe7g_di" bpmnElement="Activity_0sur232">
-        <dc:Bounds x="1970" y="140" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0189nyk_di" bpmnElement="Activity_0ugerbt">
         <dc:Bounds x="1820" y="140" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0dhl5cu_di" bpmnElement="Activity_0mwsc4b">
         <dc:Bounds x="1640" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0fwntzp_di" bpmnElement="Event_0fwntzp">
+        <dc:Bounds x="2362" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2353" y="205" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1pfhe7g_di" bpmnElement="Activity_0sur232">
+        <dc:Bounds x="2190" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07rqplk_di" bpmnElement="Activity_11xskn3">
+        <dc:Bounds x="2000" y="140" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_0ptc3ls" bpmnElement="Flow_0wqzfx8">
@@ -350,7 +397,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1l33z5y_di" bpmnElement="Flow_1l33z5y">
         <di:waypoint x="1920" y="180" />
-        <di:waypoint x="1970" y="180" />
+        <di:waypoint x="2000" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1g3axxo_di" bpmnElement="Flow_1g3axxo">
         <di:waypoint x="1160" y="280" />
@@ -394,12 +441,16 @@
         <di:waypoint x="1640" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1v4ks53_di" bpmnElement="Flow_1v4ks53">
-        <di:waypoint x="2070" y="180" />
-        <di:waypoint x="2122" y="180" />
+        <di:waypoint x="2290" y="180" />
+        <di:waypoint x="2362" y="180" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1t1nqyo_di" bpmnElement="Flow_1t1nqyo">
         <di:waypoint x="1740" y="180" />
         <di:waypoint x="1820" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14aywde_di" bpmnElement="Flow_14aywde">
+        <di:waypoint x="2100" y="180" />
+        <di:waypoint x="2190" y="180" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

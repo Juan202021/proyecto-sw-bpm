@@ -11,11 +11,8 @@
 .mtj.tmp/
 
 # Package Files #
-<<<<<<< HEAD
 *.jar
 !**/gradle-wrapper.jar
-=======
->>>>>>> 3f82d0d (jar y otros)
 *.war
 *.nar
 *.ear

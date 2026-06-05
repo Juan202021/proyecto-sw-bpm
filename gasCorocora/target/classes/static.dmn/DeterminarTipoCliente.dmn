@@ -18,7 +18,7 @@
       </rule>
       <rule id="DecisionRule_0lsv3eq">
         <inputEntry id="UnaryTests_1gia0wo">
-          <text>50-200</text>
+          <text>[50..200]</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1hjc5k4">
           <text>"Residencial Medio"</text>
