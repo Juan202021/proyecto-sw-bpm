@@ -12,8 +12,6 @@
         <bpmn:flowNodeRef>Event_0xqcq19</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1q4f4ey</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_03wwju0</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_reportar_falla_pendiente</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_falla_ya_reportada</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:endEvent id="Event_0hostkc" name="Monitoreo terminado">
@@ -103,7 +101,7 @@
       <bpmn:outgoing>Flow_0xosuit</bpmn:outgoing>
       <bpmn:errorEventDefinition id="ErrorEventDefinition_0ddteg6" camunda:errorCodeVariable="ERROR_MEDICIONES" />
     </bpmn:boundaryEvent>
-    <bpmn:sequenceFlow id="Flow_0wq9215" sourceRef="Activity_1q4f4ey" targetRef="Gateway_reportar_falla_pendiente" />
+    <bpmn:sequenceFlow id="Flow_0wq9215" sourceRef="Activity_1q4f4ey" targetRef="Event_03wwju0" />
     <bpmn:sequenceFlow id="Flow_1dc9z27" sourceRef="Activity_1x1bjqd" targetRef="Event_0hostkc" />
     <bpmn:sequenceFlow id="Flow_0xosuit" sourceRef="Event_0xqcq19" targetRef="Activity_1q4f4ey" />
     <bpmn:sequenceFlow id="Flow_1rxza51" sourceRef="StartEvent_1" targetRef="Activity_1x1bjqd" />
@@ -111,20 +109,8 @@
       <bpmn:incoming>Flow_0xosuit</bpmn:incoming>
       <bpmn:outgoing>Flow_0wq9215</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:exclusiveGateway id="Gateway_reportar_falla_pendiente" name="¿Crear reporte?" default="Flow_falla_duplicada">
-      <bpmn:incoming>Flow_0wq9215</bpmn:incoming>
-      <bpmn:outgoing>Flow_reportar_falla</bpmn:outgoing>
-      <bpmn:outgoing>Flow_falla_duplicada</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_reportar_falla" name="Si" sourceRef="Gateway_reportar_falla_pendiente" targetRef="Event_03wwju0">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${debeReportarFalla == true}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_falla_duplicada" name="No" sourceRef="Gateway_reportar_falla_pendiente" targetRef="Event_falla_ya_reportada" />
-    <bpmn:endEvent id="Event_falla_ya_reportada" name="Falla ya reportada">
-      <bpmn:incoming>Flow_falla_duplicada</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:endEvent id="Event_03wwju0" name="Error reportado">
-      <bpmn:incoming>Flow_reportar_falla</bpmn:incoming>
+      <bpmn:incoming>Flow_0wq9215</bpmn:incoming>
       <bpmn:signalEventDefinition id="SignalEventDefinition_10wic73" signalRef="Signal_3qt76ce">
         <bpmn:extensionElements>
           <camunda:in variables="all" />
