@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones - Plataforma de Clientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="toast" class="toast hidden"></div>
+        <header class="glass-header">
+            <h1>Panel de Cliente</h1>
+            <div class="user-info">
+                <span id="user-name-display"></span>
+                <button class="btn-secondary" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <nav class="sidebar glass-panel">
+                <ul>
+                    <li><a class="nav-btn" href="propiedades.html">Mis Propiedades</a></li>
+                    <li><a class="nav-btn" href="contratos.html">Mis Contratos & Pagos</a></li>
+                    <li><a class="nav-btn active" href="notificaciones.html">Notificaciones</a></li>
+                    <li><a class="nav-btn" href="solicitudes.html">Mis Solicitudes</a></li>
+                    <li><a class="nav-btn" href="procesos.html">Mis Procesos</a></li>
+                </ul>
+            </nav>
+
+            <main class="content-area glass-panel">
+                <h2>Bandeja de Notificaciones</h2>
+                <div id="notifications-list" class="list-container">
+                    <!-- JS fills this -->
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        checkAuth();
+        updateUserName();
+        loadNotifications();
+    </script>
+</body>
+</html>

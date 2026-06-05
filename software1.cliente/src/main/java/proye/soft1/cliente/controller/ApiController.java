@@ -3,6 +3,8 @@ package proye.soft1.cliente.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
 import proye.soft1.cliente.model.*;
 import proye.soft1.cliente.repository.*;
 
@@ -35,6 +37,10 @@ public class ApiController {
 
     @Autowired
     private SolicitudRepository solicitudRepository;
+
+    //DE JOSE BARRETO
+    @Autowired
+    private RestTemplate restTemplate;
 
     // --- AUTH ---
     @PostMapping("/auth/register")
@@ -139,12 +145,34 @@ public class ApiController {
         boolean antesDeSuspension = payload.containsKey("antesDeSuspension") ? (Boolean) payload.get("antesDeSuspension") : true;
 
         if (esProcesoActivoSuspension) {
-            if (antesDeSuspension) {
-                System.out.println("Disparando evento en Camunda: Pago Recibido (POST /camunda/pagos/recibido)");
+
+             String mensaje;
+
+             if (antesDeSuspension) {
+                mensaje = "PagoRecibido";
             } else {
-                System.out.println("Disparando evento en Camunda: Pago Confirmado (POST /camunda/pagos/confirmado)");
+                mensaje = "PagoConfirmado";
             }
-        }
+
+        Map<String,Object> evento = Map.of(
+        "messageName", mensaje,
+        "idContrato", payload.get("idContrato")
+        );
+
+
+        restTemplate.postForObject(
+            "http://bpmengine:9000/api/workflows/message",
+            evento,
+            Map.class
+        );
+
+
+        System.out.println(
+            "Mensaje enviado a Camunda: " + mensaje
+        );
+    }
+
+        
 
         return ResponseEntity.ok(Map.of("message", "Pago registrado y enviado a la API externa exitosamente", "datos", payload));
     }
@@ -180,7 +208,7 @@ public class ApiController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // --- MOCKS CAMUNDA/EMPRESA ---
+    /*  --- MOCKS CAMUNDA/EMPRESA ---
     @PostMapping("/camunda/pagos/recibido")
     public ResponseEntity<?> mockPagoRecibidoCamunda(@RequestBody Map<String, Object> payload) {
         System.out.println("Mock Camunda: Evento Pago Recibido procesado - " + payload);
@@ -192,4 +220,5 @@ public class ApiController {
         System.out.println("Mock Camunda: Evento Pago Confirmado procesado - " + payload);
         return ResponseEntity.ok(Map.of("status", "success", "event", "Pago Confirmado"));
     }
+        */
 }

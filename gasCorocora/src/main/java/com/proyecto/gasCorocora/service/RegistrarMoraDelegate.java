@@ -14,9 +14,21 @@ public class RegistrarMoraDelegate implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
 
         // Obtener variables del formulario
-        String idContrato = (String) execution.getVariable("idContrato");
-        int diasMora = (int) execution.getVariable("diasMora");
-        int montoDeuda = (int) execution.getVariable("montoDeuda");
+        String idContrato = String.valueOf(
+            execution.getVariable("idContrato")
+        );
+
+        int diasMora = Integer.parseInt(
+            String.valueOf(
+                execution.getVariable("diasMora")
+            )
+        );
+
+        int montoDeuda = Integer.parseInt(
+            String.valueOf(
+                execution.getVariable("montoDeuda")
+            )
+        );
 
 
         Map<String, Object> mora = new HashMap<>();

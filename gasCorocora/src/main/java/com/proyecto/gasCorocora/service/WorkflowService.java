@@ -90,6 +90,23 @@ public class WorkflowService {
         return findCurrentTask(processInstanceId).orElse(null);
     }
 
+    // Método para correlacionar un mensaje a una instancia de proceso específica
+    //BY JOSE BARRETO
+    public void correlateMessage(
+        String messageName,
+        String idContrato
+    ) {
+
+    runtimeService
+        .createMessageCorrelation(messageName)
+        .processInstanceVariableEquals(
+            "idContrato",
+            idContrato
+        )
+        .correlate();
+    }
+
+
     private Map<String, Object> safeVariables(Map<String, Object> variables) {
         return variables == null ? new HashMap<>() : new HashMap<>(variables);
     }

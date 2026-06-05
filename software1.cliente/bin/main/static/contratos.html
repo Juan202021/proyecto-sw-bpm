@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contratos y Pagos - Plataforma de Clientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="toast" class="toast hidden"></div>
+        <header class="glass-header">
+            <h1>Panel de Cliente</h1>
+            <div class="user-info">
+                <span id="user-name-display"></span>
+                <button class="btn-secondary" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <nav class="sidebar glass-panel">
+                <ul>
+                    <li><a class="nav-btn" href="propiedades.html">Mis Propiedades</a></li>
+                    <li><a class="nav-btn active" href="contratos.html">Mis Contratos & Pagos</a></li>
+                    <li><a class="nav-btn" href="notificaciones.html">Notificaciones</a></li>
+                    <li><a class="nav-btn" href="solicitudes.html">Mis Solicitudes</a></li>
+                    <li><a class="nav-btn" href="procesos.html">Mis Procesos</a></li>
+                </ul>
+            </nav>
+
+            <main class="content-area glass-panel">
+                <h2>Mis Contratos</h2>
+                <div id="contracts-list" class="grid-list">
+                    <!-- JS fills this -->
+                </div>
+                
+                <div id="facturas-container" class="hidden" style="margin-top: 2rem;">
+                    <h3>Facturas del Contrato Seleccionado</h3>
+                    <div id="facturas-list" class="list-container"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal de Pagos -->
+    <div id="payment-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+            <h2>Realizar Pago</h2>
+            <p>Estás a punto de pagar la factura <span id="pay-factura-id"></span></p>
+            <p>Monto: $<span id="pay-monto"></span></p>
+            <form id="payment-form" style="margin-top: 1rem;">
+                <div class="input-group">
+                    <label for="pay-method">Medio de Pago</label>
+                    <select id="pay-method" required style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--glass-border); background: rgba(15, 23, 42, 0.6); color: white;">
+                        <option value="tarjeta_credito">Tarjeta de Crédito</option>
+                        <option value="transferencia">Transferencia Bancaria</option>
+                        <option value="pse">PSE</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Confirmar Pago</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        checkAuth();
+        updateUserName();
+        loadContracts();
+    </script>
+</body>
+</html>

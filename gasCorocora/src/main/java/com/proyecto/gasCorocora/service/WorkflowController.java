@@ -24,6 +24,35 @@ public class WorkflowController {
         return workflowService.startProcess(variables);
     }
 
+    // Endpoint del mensaje by JOSE BARRETO
+    @PostMapping("/message")
+    public Map<String,Object> message(
+        @RequestBody Map<String,Object> body
+    ){
+
+        String messageName =
+            (String) body.get("messageName");
+
+        String idContrato =
+            (String) body.get("idContrato");
+
+
+        workflowService.correlateMessage(
+            messageName,
+            idContrato
+        );
+
+
+        return Map.of(
+            "message",
+            "Evento enviado",
+            "tipo",
+            messageName
+        );
+    }
+
+
+
     @GetMapping("/{processInstanceId}")
     public Map<String, Object> describe(@PathVariable String processInstanceId) {
         return workflowService.describe(processInstanceId);
@@ -46,25 +75,5 @@ public class WorkflowController {
     }
 
 
-  // Método para correlacionar un mensaje a una instancia de proceso específica
-    //BY JOSE BARRETO
-    public void correlateMessage(
-        String messageName,
-        String idContrato
-) {
-
-    runtimeService
-        .createMessageCorrelation(messageName)
-        .processInstanceVariableEquals(
-            "idContrato",
-            idContrato
-        )
-        .correlate();
-}
-
-
-    private Map<String, Object> safeVariables(Map<String, Object> variables) {
-        return variables == null ? new HashMap<>() : new HashMap<>(variables);
-    }
 }
 
